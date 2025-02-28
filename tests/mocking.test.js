@@ -1,4 +1,4 @@
-import { vi, it, expect, describe, beforeEach } from 'vitest';
+import { vi, it, expect, describe } from 'vitest';
 import {
   getDiscount,
   getPriceInCurrency,
@@ -67,7 +67,7 @@ describe('renderPage', () => {
   });
 
   it('should call analytics', async () => {
-    const result = await renderPage();
+    await renderPage();
     expect(trackPageView).toHaveBeenCalledWith('/home');
   });
 });
@@ -109,7 +109,7 @@ describe('signUp', () => {
   });
 
   it('should send welcome email if email is valid', async () => {
-    const result = await signUp(email);
+    await signUp(email);
     expect(sendEmail).toHaveBeenCalledOnce();
     const args = vi.mocked(sendEmail).mock.calls[0];
     expect(args[0]).toBe(email);
